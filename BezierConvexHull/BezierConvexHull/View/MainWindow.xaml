@@ -1,0 +1,92 @@
+﻿<Window x:Class="BezierConvexHull.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BezierConvexHull"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Border BorderBrush="Black" BorderThickness="0 2 0 0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+        
+            <Border BorderBrush="Black" BorderThickness="0 0 2 0">
+                <Canvas x:Name="MainCanvas"
+                        >
+                    <Canvas.Background>
+                        <SolidColorBrush Color="White" Opacity="0"/>
+                    </Canvas.Background>
+                </Canvas>
+            </Border>
+
+            <StackPanel Grid.Column="1">
+                <Label FontWeight="Bold">
+                    Samples:
+                </Label>
+                <ListBox x:Name="SamplesListBox"
+                         SelectedIndex="0"
+                         >
+                    <ListBoxItem>
+                        sample 1
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        sample 2
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        sample 3
+                    </ListBoxItem>
+                </ListBox>
+
+                <StackPanel>
+
+                    <Button Name="NextSampleButton"
+                            >
+                        Next sample
+                    </Button>
+
+                    <Button Name="NewRandomSampleButton"
+                            >
+                        New random sample
+                    </Button>
+
+                    <Label HorizontalAlignment="Center">
+                        Random parameters:
+                    </Label>
+
+                    <xctk:IntegerUpDown Height="20"
+                                        Watermark="Enter points number..."
+                                        Name="PointsNumberUpDown" />
+
+                    <xctk:IntegerUpDown Height="20"
+                                        Watermark="Enter points' x lower bound..."
+                                        Name="PointsLowerXUpDown" />
+
+                    <xctk:IntegerUpDown Height="20"
+                                        Watermark="Enter points' x upper bound..."
+                                        Name="PointsUpperXUpDown" />
+
+                    <xctk:IntegerUpDown Height="20"
+                                        Watermark="Enter points' y lower bound..."
+                                        Name="PointsLowerYUpDown" />
+
+                    <xctk:IntegerUpDown Height="20"
+                                        Watermark="Enter points' y upper bound..."
+                                        Name="PointsUpperYUpDown" />
+
+                    <!-- Button that will show user guide/helper 
+                         Should be an icon further
+                    -->
+                    <Button x:Name="HelpButton">
+                        Help
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>
