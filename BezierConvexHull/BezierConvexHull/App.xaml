@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:BezierConvexHull"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="View/Styles/Colors.xaml" />
+                <ResourceDictionary Source="View/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="View/Styles/Buttons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
