@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:BezierConvexHull"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="App" 
+        Height="450" 
+        Width="750"
+        MinHeight="350"  
+        MinWidth="550"        
+        >
 
     <Window.DataContext>
         <local:MainViewModel/>
@@ -29,31 +34,34 @@
             </Border>
 
             <StackPanel Grid.Column="1">
-                <Label FontWeight="Bold">
+                <Label>
                     Samples:
                 </Label>
                 <ListBox x:Name="SamplesListBox"
+                         ItemsSource="{Binding SamplePointSets}"
                          SelectedIndex="0"
                          >
                     <ListBoxItem>
-                        sample 1
+                        <local:PointSetUserControl/>
                     </ListBoxItem>
                     <ListBoxItem>
-                        sample 2
+                        <local:PointSetUserControl/>
                     </ListBoxItem>
                     <ListBoxItem>
-                        sample 3
+                        <local:PointSetUserControl/>
                     </ListBoxItem>
                 </ListBox>
 
                 <StackPanel>
 
                     <Button Name="NextSampleButton"
+                            Command="{Binding NextSampleCommand}"
                             >
                         Next sample
                     </Button>
 
                     <Button Name="NewRandomSampleButton"
+                            Command="{Binding GenerateRandomSampleCommand}"
                             >
                         New random sample
                     </Button>
@@ -64,28 +72,39 @@
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points number..."
-                                        Name="PointsNumberUpDown" />
+                                        Name="PointsNumberUpDown" 
+                                        Maximum="{Binding MaxPointsNumber}"
+                                        Minimum="1"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x lower bound..."
-                                        Name="PointsLowerXUpDown" />
+                                        Name="PointsLowerXUpDown" 
+                                        Maximum="{Binding MaxPointsXLowerBound}"
+                                        Minimum="{Binding MinPointsXLowerBound}"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x upper bound..."
-                                        Name="PointsUpperXUpDown" />
+                                        Name="PointsUpperXUpDown" 
+                                        Maximum="{Binding MaxPointsXUpperBound}"
+                                        Minimum="{Binding MinPointsXUpperBound}"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y lower bound..."
-                                        Name="PointsLowerYUpDown" />
+                                        Name="PointsLowerYUpDown" 
+                                        Maximum="{Binding MaxPointsYLowerBound}"
+                                        Minimum="{Binding MinPointsYLowerBound}"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y upper bound..."
-                                        Name="PointsUpperYUpDown" />
+                                        Name="PointsUpperYUpDown" 
+                                        Maximum="{Binding MaxPointsYUpperBound}"
+                                        Minimum="{Binding MinPointsYUpperBound}"/>
 
                     <!-- Button that will show user guide/helper 
                          Should be an icon further
                     -->
-                    <Button x:Name="HelpButton">
+                    <Button x:Name="HelpButton"
+                            Command="{Binding ShowHelpCommand}">
                         Help
                     </Button>
 
