@@ -2,12 +2,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:BezierConvexHull.View.Styles">
 
-    <SolidColorBrush x:Key="RegularButtonColorBrush" Color="White" />
-    <SolidColorBrush x:Key="HoveredRegularButtonColorBrush" Color="White" />
-    <SolidColorBrush x:Key="PressedRegularButtonColorBrush" Color="White" />
+    <Color x:Key="ExtraLight">#6666ff</Color>
+    <SolidColorBrush x:Key="ExtraLightBrush" Color="{StaticResource ExtraLight}" />
     
-    <SolidColorBrush x:Key="RegularButtonTextColorBrush" Color="White" />
-    <SolidColorBrush x:Key="PressedRegularButtonTextColorBrush" Color="White" />
+    <Color x:Key="Light">#1a1aff</Color>
+    <SolidColorBrush x:Key="LightBrush" Color="{StaticResource Light}" />
+
+    <Color x:Key="Medium">#0000e6</Color>
+    <SolidColorBrush x:Key="MediumBrush" Color="{StaticResource Medium}" />
+
+    <Color x:Key="Dark">#0000b3</Color>
+    <SolidColorBrush x:Key="DarkBrush" Color="{StaticResource Dark}" />
+
+    <Color x:Key="ExtraDark">#000066</Color>
+    <SolidColorBrush x:Key="ExtraDarkBrush" Color="{StaticResource ExtraDark}" />
+
+    <Color x:Key="ButtonText">#ffffff</Color>
+
+    <SolidColorBrush x:Key="RegularButtonColorBrush" Color="{StaticResource Dark}" />
+    <SolidColorBrush x:Key="HoveredRegularButtonColorBrush" Color="{StaticResource Medium}" />
+    <SolidColorBrush x:Key="PressedRegularButtonColorBrush" Color="{StaticResource Light}" />
+
+    <SolidColorBrush x:Key="RegularButtonTextColorBrush" Color="{StaticResource ButtonText}" />
+    <SolidColorBrush x:Key="PressedRegularButtonTextColorBrush" Color="{StaticResource ButtonText}" />
     
 
 </ResourceDictionary>
