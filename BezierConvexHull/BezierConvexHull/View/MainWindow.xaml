@@ -7,10 +7,10 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="App" 
-        Height="450" 
-        Width="750"
-        MinHeight="350"  
-        MinWidth="550"        
+        MaxHeight="450" 
+        MaxWidth="750"
+        MinHeight="450"  
+        MinWidth="750"        
         >
 
     <Window.DataContext>
@@ -30,6 +30,7 @@
                     <Canvas.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </Canvas.Background>
+                    <Rectangle Width="20" Height="20" Fill="Green" Canvas.Top="00"/>
                 </Canvas>
             </Border>
 
@@ -41,14 +42,37 @@
                          ItemsSource="{Binding SamplePointSets}"
                          SelectedIndex="0"
                          >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Points number:"/>
+                                    <Label Content="{Binding PointsNumber}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Min X:"/>
+                                    <Label Content="{Binding MinX}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Max X:"/>
+                                    <Label Content="{Binding MaxX}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Min Y:"/>
+                                    <Label Content="{Binding MinY}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Max Y:"/>
+                                    <Label Content="{Binding MaxY}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                     <ListBoxItem>
-                        <local:PointSetUserControl/>
                     </ListBoxItem>
                     <ListBoxItem>
-                        <local:PointSetUserControl/>
                     </ListBoxItem>
                     <ListBoxItem>
-                        <local:PointSetUserControl/>
                     </ListBoxItem>
                 </ListBox>
 

@@ -77,11 +77,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="ViewModel\PointSetViewModel.cs" />
     <Compile Include="View\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserControls\PointSetUserControl.xaml.cs">
-      <DependentUpon>PointSetUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="View\HelpWindow.xaml">
       <SubType>Designer</SubType>
@@ -114,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Styles\Other.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserControls\PointSetUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
