@@ -77,6 +77,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Model\Helpers.cs" />
+    <Compile Include="Model\Point.cs" />
+    <Compile Include="Model\PointComparer.cs" />
+    <Compile Include="Model\QuickHull.cs" />
+    <Compile Include="Model\SamplePointSets.cs" />
     <Compile Include="ViewModel\PointSetViewModel.cs" />
     <Compile Include="View\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
