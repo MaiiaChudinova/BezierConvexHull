@@ -83,6 +83,7 @@
     <Compile Include="Model\QuickHull.cs" />
     <Compile Include="Model\SamplePointSets.cs" />
     <Compile Include="ViewModel\PointSetViewModel.cs" />
+    <Compile Include="ViewModel\PointViewModel.cs" />
     <Compile Include="View\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>

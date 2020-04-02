@@ -25,6 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="Black" BorderThickness="0 0 2 0">
+                <!--
                 <Canvas x:Name="MainCanvas"
                         >
                     <Canvas.Background>
@@ -32,6 +33,25 @@
                     </Canvas.Background>
                     <Rectangle Width="20" Height="20" Fill="Green" Canvas.Top="00"/>
                 </Canvas>
+                -->
+                <ItemsControl ItemsSource="{Binding CurrentPointSet}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Black"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Border>
 
             <StackPanel Grid.Column="1">

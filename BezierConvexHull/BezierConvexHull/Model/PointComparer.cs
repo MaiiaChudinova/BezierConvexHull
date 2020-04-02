@@ -16,9 +16,9 @@ namespace BezierConvexHull
 
 		public int Compare(Point x, Point y)
 		{
-			int o = Orientation(p0, x, y);
+			int o = Helpers.Orientation(p0, x, y);
 			if (o == 0)
-				return (distSq(p0, y) >= distSq(p0, x)) ? -1 : 1;
+				return (Helpers.DistanceSquare(p0, y) >= Helpers.DistanceSquare(p0, x)) ? -1 : 1;
 
 			return o;
 		}
