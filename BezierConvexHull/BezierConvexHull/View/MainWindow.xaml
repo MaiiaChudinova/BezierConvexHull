@@ -50,7 +50,7 @@
                     Samples:
                 </Label>
                 <ListBox x:Name="SamplesListBox"
-                         ItemsSource="{Binding SamplePointSets}"
+                         ItemsSource="{Binding SamplePointSetsCollection}"
                          SelectedIndex="0"
                          >
                     <ListBox.ItemTemplate>

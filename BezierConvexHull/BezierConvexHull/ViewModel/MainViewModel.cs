@@ -10,7 +10,7 @@ namespace BezierConvexHull
     public class MainViewModel : BaseViewModel
     {
         // TODO: change to suitable collection
-        public List<PointSetViewModel> SamplePointSets { get; set; }
+        public ObservableCollection<PointSetViewModel> SamplePointSetsCollection { get; set; }
 
         public ObservableCollection<PointViewModel> CurrentPointSet { get; set; } = new ObservableCollection<PointViewModel>();
 
@@ -21,14 +21,40 @@ namespace BezierConvexHull
         public RelayCommand ShowHelpCommand { get; set; }
 
         public int MaxPointsNumber { get; }
+
+        private const int SCALE_INCREASE = 25;
+
+        private const int SCALE_SHIFT = 50;
        
         public MainViewModel()
         {
-            int w = 20, h = 20;
-            CurrentPointSet.Add(new PointViewModel() { X = 100, Y = 100, Width = w, Height = h });
-            CurrentPointSet.Add(new PointViewModel() { X = 200, Y = 100, Width = w, Height = h });
-            CurrentPointSet.Add(new PointViewModel() { X = 100, Y = 200, Width = w, Height = h });
-            CurrentPointSet.Add(new PointViewModel() { X = 200, Y = 200, Width = w, Height = h, IsHullPoint = true });
+            int radius = 10;
+            CurrentPointSet.Add(new PointViewModel() { X = 4 * SCALE_INCREASE, Y = 4 * SCALE_INCREASE, Width = radius, Height = radius });
+            CurrentPointSet.Add(new PointViewModel() { X = 8 * SCALE_INCREASE, Y = 4 * SCALE_INCREASE, Width = radius, Height = radius });
+            CurrentPointSet.Add(new PointViewModel() { X = 4 * SCALE_INCREASE, Y = 8 * SCALE_INCREASE, Width = radius, Height = radius });
+            CurrentPointSet.Add(new PointViewModel() { X = 8 * SCALE_INCREASE, Y = 8 * SCALE_INCREASE, Width = radius, Height = radius, IsHullPoint = true });
+
+            GenerateRandomSampleCommand = new RelayCommand( obj =>
+            {
+                CurrentPointSet.Clear();
+                List<Point> points = new List<Point>();
+                points = SamplePointSets.GenerateRandomPointSet(10, 0, 10);
+                foreach (Point p in points)
+                {
+                    CurrentPointSet.Add(new PointViewModel() { X = p.x * SCALE_INCREASE + SCALE_SHIFT, Y = p.y * SCALE_INCREASE + SCALE_SHIFT, Width = radius, Height = radius });
+                }
+            }, obj => true);
+
+            //SamplePointSets
+            /*
+            HashSet<PointViewModel> test = new HashSet<PointViewModel>();
+            test.Add(new PointViewModel() { X = 100, Y = 100, Width = w, Height = h });
+            test.Add(new PointViewModel() { X = 70, Y = 65, Width = w, Height = h });
+            test.Add(new PointViewModel() { X = 40, Y = 100, Width = w, Height = h });
+            test.Add(new PointViewModel() { X = 100, Y = 130, Width = w, Height = h });
+            test.Add(new PointViewModel() { X = 190, Y = 10, Width = w, Height = h });
+            SamplePointSets.Add(new PointSetViewModel(test));
+            */
         }
     }
 }
