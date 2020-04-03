@@ -25,19 +25,10 @@
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="Black" BorderThickness="0 0 2 0">
-                <!--
-                <Canvas x:Name="MainCanvas"
-                        >
-                    <Canvas.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </Canvas.Background>
-                    <Rectangle Width="20" Height="20" Fill="Green" Canvas.Top="00"/>
-                </Canvas>
-                -->
-                <ItemsControl ItemsSource="{Binding CurrentPointSet}">
+                <ItemsControl Name="MainScene" ItemsSource="{Binding CurrentPointSet}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas/>
+                            <Canvas Height="420" VerticalAlignment="Top"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
@@ -48,7 +39,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="Black"/>
+                            <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding IsHullPoint, Converter={local:BooleanToBackgroundColorBrushConverter}}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -123,26 +114,26 @@
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x lower bound..."
                                         Name="PointsLowerXUpDown" 
-                                        Maximum="{Binding MaxPointsXLowerBound}"
-                                        Minimum="{Binding MinPointsXLowerBound}"/>
+                                        Maximum="{Binding ElementName=MainScene, Path=Width}"
+                                        Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x upper bound..."
                                         Name="PointsUpperXUpDown" 
-                                        Maximum="{Binding MaxPointsXUpperBound}"
-                                        Minimum="{Binding MinPointsXUpperBound}"/>
+                                        Maximum="{Binding ElementName=MainScene, Path=Width}"
+                                        Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y lower bound..."
                                         Name="PointsLowerYUpDown" 
-                                        Maximum="{Binding MaxPointsYLowerBound}"
-                                        Minimum="{Binding MinPointsYLowerBound}"/>
+                                        Maximum="{Binding ElementName=MainScene, Path=Height}"
+                                        Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y upper bound..."
                                         Name="PointsUpperYUpDown" 
-                                        Maximum="{Binding MaxPointsYUpperBound}"
-                                        Minimum="{Binding MinPointsYUpperBound}"/>
+                                        Maximum="{Binding ElementName=MainScene, Path=Height}"
+                                        Minimum="0"/>
 
                     <!-- Button that will show user guide/helper 
                          Should be an icon further

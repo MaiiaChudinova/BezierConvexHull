@@ -82,6 +82,8 @@
     <Compile Include="Model\PointComparer.cs" />
     <Compile Include="Model\QuickHull.cs" />
     <Compile Include="Model\SamplePointSets.cs" />
+    <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToBackgroundColorBrushConverter.cs" />
     <Compile Include="ViewModel\PointSetViewModel.cs" />
     <Compile Include="ViewModel\PointViewModel.cs" />
     <Compile Include="View\HelpWindow.xaml.cs">

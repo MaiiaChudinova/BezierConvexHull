@@ -12,5 +12,9 @@ namespace BezierConvexHull
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+
+        public bool IsHullPoint { get; set; }
+
+
     }
 }
