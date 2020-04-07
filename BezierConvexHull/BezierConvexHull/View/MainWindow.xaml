@@ -104,6 +104,11 @@
                         Next sample
                     </Button>
 
+                    <Button x:Name="SaveAsSampleButton"
+                            Command="{Binding SaveAsSampleCommand}">
+                        Save as sample
+                    </Button>
+
                     <Button Name="NewRandomSampleButton"
                             Command="{Binding GenerateRandomSampleCommand}"
                             >

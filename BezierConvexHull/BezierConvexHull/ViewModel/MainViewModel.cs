@@ -19,6 +19,8 @@ namespace BezierConvexHull
         public RelayCommand GenerateRandomSampleCommand { get; set; }
 
         public RelayCommand ShowHelpCommand { get; set; }
+        
+        public RelayCommand SaveAsSampleCommand { get; set; }
 
         public int MaxPointsNumber { get; }
 
