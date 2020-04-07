@@ -7,10 +7,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="App" 
-        MaxHeight="450" 
-        MaxWidth="750"
         MinHeight="450"  
-        MinWidth="750"        
+        MinWidth="800"        
         >
 
     <Window.DataContext>
@@ -21,7 +19,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="350"/>
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="Black" BorderThickness="0 0 2 0">
@@ -39,7 +37,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Rectangle Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding IsHullPoint, Converter={local:BooleanToBackgroundColorBrushConverter}}"/>
+                            <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding IsHullPoint, Converter={local:BooleanToBackgroundColorBrushConverter}}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -49,42 +47,53 @@
                 <Label>
                     Samples:
                 </Label>
+
                 <ListBox x:Name="SamplesListBox"
                          ItemsSource="{Binding SamplePointSetsCollection}"
-                         SelectedIndex="0"
+                         FontSize="{StaticResource FontSizeSmall}"
                          >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Row="0" Grid.ColumnSpan="4"
+                                    Orientation="Horizontal">
                                     <Label Content="Points number:"/>
                                     <Label Content="{Binding PointsNumber}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Grid.Row="1" Grid.Column="0"
+                                    Orientation="Horizontal">
                                     <Label Content="Min X:"/>
                                     <Label Content="{Binding MinX}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Grid.Row="1" Grid.Column="1"
+                                    Orientation="Horizontal">
                                     <Label Content="Max X:"/>
                                     <Label Content="{Binding MaxX}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Grid.Row="1" Grid.Column="2"
+                                    Orientation="Horizontal">
                                     <Label Content="Min Y:"/>
                                     <Label Content="{Binding MinY}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Grid.Row="1" Grid.Column="3"
+                                    Orientation="Horizontal">
                                     <Label Content="Max Y:"/>
                                     <Label Content="{Binding MaxY}"/>
                                 </StackPanel>
-                            </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <ListBoxItem>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                    </ListBoxItem>
                 </ListBox>
 
                 <StackPanel>

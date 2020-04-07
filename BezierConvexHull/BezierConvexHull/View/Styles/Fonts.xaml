@@ -6,7 +6,7 @@
 
     <!-- Font sizes -->
     <system:Double x:Key="FontSizeRegular">20</system:Double>
-    <system:Double x:Key="FontSizeSmall">16</system:Double>
-    <system:Double x:Key="FontSizeLarge">32</system:Double>
+    <system:Double x:Key="FontSizeSmall">10</system:Double>
+    <system:Double x:Key="FontSizeLarge">30</system:Double>
 
 </ResourceDictionary>

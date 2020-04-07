@@ -11,7 +11,7 @@ namespace BezierConvexHull
     {
         public ObservableCollection<PointViewModel> PointSet { get; set; }
 
-        public int PointsNumber { get; set; }
+        public int PointsNumber { get; set; } = 15;
 
         public int MinX { get; set; }
 
@@ -23,6 +23,7 @@ namespace BezierConvexHull
 
         public PointSetViewModel(HashSet<PointViewModel> points)
         {
+            
             PointsNumber = points.Count;
             MinX = points.Select(p => p.X).Min();
             MaxX = points.Select(p => p.X).Max();
@@ -31,6 +32,7 @@ namespace BezierConvexHull
             PointSet = new ObservableCollection<PointViewModel>();
             foreach (PointViewModel p in points)
                 PointSet.Add(p);
+            
         }
     }
 }

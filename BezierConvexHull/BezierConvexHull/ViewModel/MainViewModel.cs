@@ -45,16 +45,20 @@ namespace BezierConvexHull
                 }
             }, obj => true);
 
-            //SamplePointSets
-            /*
             HashSet<PointViewModel> test = new HashSet<PointViewModel>();
-            test.Add(new PointViewModel() { X = 100, Y = 100, Width = w, Height = h });
-            test.Add(new PointViewModel() { X = 70, Y = 65, Width = w, Height = h });
-            test.Add(new PointViewModel() { X = 40, Y = 100, Width = w, Height = h });
-            test.Add(new PointViewModel() { X = 100, Y = 130, Width = w, Height = h });
-            test.Add(new PointViewModel() { X = 190, Y = 10, Width = w, Height = h });
-            SamplePointSets.Add(new PointSetViewModel(test));
-            */
+            test.Add(new PointViewModel() { X = 100, Y = 100, Width = radius, Height = radius });
+            test.Add(new PointViewModel() { X = 70, Y = 65, Width = radius, Height = radius });
+            test.Add(new PointViewModel() { X = 40, Y = 100, Width = radius, Height = radius });
+            test.Add(new PointViewModel() { X = 100, Y = 130, Width = radius, Height = radius });
+            test.Add(new PointViewModel() { X = 190, Y = 10, Width = radius, Height = radius });
+            //SamplePointSets.Add(new PointSetViewModel(test));
+
+            SamplePointSetsCollection = new ObservableCollection<PointSetViewModel>();
+            SamplePointSetsCollection.Add(new PointSetViewModel(test));
+            SamplePointSetsCollection.Add(new PointSetViewModel(test));
+            //SamplePointSets
+            
+            
         }
     }
 }
