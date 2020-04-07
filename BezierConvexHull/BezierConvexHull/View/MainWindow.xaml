@@ -26,7 +26,7 @@
                 <ItemsControl Name="MainScene" ItemsSource="{Binding CurrentPointSet}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas Height="420" VerticalAlignment="Top"/>
+                            <Canvas Height="{Binding SceneSize}" VerticalAlignment="Top"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
@@ -123,25 +123,25 @@
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x lower bound..."
                                         Name="PointsLowerXUpDown" 
-                                        Maximum="{Binding ElementName=MainScene, Path=Width}"
+                                        Maximum="{Binding SceneSize}"
                                         Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' x upper bound..."
                                         Name="PointsUpperXUpDown" 
-                                        Maximum="{Binding ElementName=MainScene, Path=Width}"
+                                        Maximum="{Binding SceneSize}"
                                         Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y lower bound..."
                                         Name="PointsLowerYUpDown" 
-                                        Maximum="{Binding ElementName=MainScene, Path=Height}"
+                                        Maximum="{Binding SceneSize}"
                                         Minimum="0"/>
 
                     <xctk:IntegerUpDown Height="20"
                                         Watermark="Enter points' y upper bound..."
                                         Name="PointsUpperYUpDown" 
-                                        Maximum="{Binding ElementName=MainScene, Path=Height}"
+                                        Maximum="{Binding SceneSize}"
                                         Minimum="0"/>
 
                     <!-- Button that will show user guide/helper 

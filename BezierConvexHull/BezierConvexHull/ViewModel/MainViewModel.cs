@@ -22,6 +22,8 @@ namespace BezierConvexHull
 
         public int MaxPointsNumber { get; }
 
+        public int SceneSize { get; } = 420;
+
         private const int SCALE_INCREASE = 25;
 
         private const int SCALE_SHIFT = 50;
