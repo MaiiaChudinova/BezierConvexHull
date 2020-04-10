@@ -21,7 +21,7 @@ namespace BezierConvexHull
 
         public int MaxY { get; set; }   
 
-        public PointSetViewModel(HashSet<PointViewModel> points)
+        public PointSetViewModel(List<PointViewModel> points)
         {
             
             PointsNumber = points.Count;

@@ -8,7 +8,7 @@ namespace BezierConvexHull
 {
 	public static class QuickHull
 	{
-		public static HashSet<Point> BuildConvexHull(List<Point> points)
+		public static List<Point> BuildConvexHull(List<Point> points)
 		{
 			HashSet<Point> hull = new HashSet<Point>();
 
@@ -16,7 +16,7 @@ namespace BezierConvexHull
 			{
 				foreach (Point p in points)
 					hull.Add(p);
-				return hull;
+				return hull.ToList();
 			}
 
 			int leftBottom = 0, rightTop = 0;
@@ -31,7 +31,7 @@ namespace BezierConvexHull
 			Quickhull(points, points[leftBottom], points[rightTop], 1, hull);
 			Quickhull(points, points[leftBottom], points[rightTop], -1, hull);
 
-			return hull;
+			return hull.ToList();
 		}
 
 		private static void Quickhull(List<Point> points, Point p1, Point p2, int side, HashSet<Point> hull)

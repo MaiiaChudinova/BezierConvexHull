@@ -48,54 +48,40 @@
                     Samples:
                 </Label>
 
-                <ListBox x:Name="SamplesListBox"
-                         ItemsSource="{Binding SamplePointSetsCollection}"
-                         FontSize="{StaticResource FontSizeSmall}"
-                         >
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <StackPanel Grid.Row="0" Grid.ColumnSpan="4"
-                                    Orientation="Horizontal">
-                                    <Label Content="Points number:"/>
-                                    <Label Content="{Binding PointsNumber}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="0"
-                                    Orientation="Horizontal">
-                                    <Label Content="Min X:"/>
-                                    <Label Content="{Binding MinX}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="1"
-                                    Orientation="Horizontal">
-                                    <Label Content="Max X:"/>
-                                    <Label Content="{Binding MaxX}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="2"
-                                    Orientation="Horizontal">
-                                    <Label Content="Min Y:"/>
-                                    <Label Content="{Binding MinY}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1" Grid.Column="3"
-                                    Orientation="Horizontal">
-                                    <Label Content="Max Y:"/>
-                                    <Label Content="{Binding MaxY}"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <ScrollViewer Height="250">
+                    <ListBox x:Name="SamplesListBox"
+                             ItemsSource="{Binding SamplePointSetsCollection}"
+                             FontSize="{StaticResource FontSizeSmall}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
+                                    <StackPanel Grid.Row="0"
+                                        Orientation="Horizontal">
+                                        <Label Content="Points number:"/>
+                                        <Label Content="{Binding Count}"/>
+                                    </StackPanel>
+                                    
+                                    <ListBox Grid.Row="1" 
+                                             ItemsSource="{Binding Item}">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                    </ListBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+                
                 <StackPanel>
 
                     <Button Name="NextSampleButton"

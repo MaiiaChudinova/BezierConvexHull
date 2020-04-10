@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,21 @@ namespace BezierConvexHull
         {
             List<List<Point>> samples = new List<List<Point>>();
 
+            return samples;
+        }
+
+        public static List<List<Point>> GetStandartSamples()
+        {
+            List<List<Point>> samples = new List<List<Point>>();
+            samples.Add(sample1);
+            samples.Add(sample2);
+            samples.Add(sample3);
+            samples.Add(sample4);
+            samples.Add(sample5);
+            samples.Add(sample6);
+            samples.Add(sample7);
+            samples.Add(sample8);
+            samples.Add(sample9);
             return samples;
         }
 
