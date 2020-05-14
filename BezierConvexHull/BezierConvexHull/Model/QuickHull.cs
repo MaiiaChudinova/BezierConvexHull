@@ -34,10 +34,10 @@ namespace BezierConvexHull
 			return hull.ToList();
 		}
 
-		private static void Quickhull(List<Point> points, Point p1, Point p2, int side, HashSet<Point> hull)
+		private static void Quickhull(List<Point> points, Point p1, Point p2, double side, HashSet<Point> hull)
 		{
 			List<int> indexes = new List<int>();
-			int maxDist = 0;
+			double maxDist = 0;
 
 			for (int i = 0; i < points.Count; ++i) indexes.Add(i);
 			indexes = indexes.Select(i => i).Where(i => Helpers.CrossProductSign(p1, p2, points[i]) == side).ToList();

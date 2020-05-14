@@ -9,7 +9,7 @@ namespace BezierConvexHull
 {
     public static class SamplePointSets
     {
-        public static List<Point> GenerateRandomPointSet(int num, int low = 0, int high = 50)
+        public static List<Point> GenerateRandomPointSet(int num, int low = 0, int high = 75)
         {
             List<Point> set = new List<Point>();
             Random generator = new Random();

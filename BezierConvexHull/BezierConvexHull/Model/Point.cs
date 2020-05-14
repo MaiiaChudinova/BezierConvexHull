@@ -8,10 +8,10 @@ namespace BezierConvexHull
 {
     public class Point
     {
-        public readonly int x;
-        public readonly int y;
+        public /*readonly int*/ double x;
+        public /*readonly int*/ double y;
 
-        public Point(int x, int y)
+        public Point(double x, double y)
         {
             this.x = x;
             this.y = y;

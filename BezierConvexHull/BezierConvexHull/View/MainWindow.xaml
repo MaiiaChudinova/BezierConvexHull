@@ -48,7 +48,8 @@
                     Samples:
                 </Label>
 
-                <ScrollViewer Height="250">
+                <!--="{StaticResource PointSetScrollViewer}"-->
+                <ScrollViewer Height="250" >
                     <ListBox x:Name="SamplesListBox"
                              ItemsSource="{Binding SamplePointSetsCollection}"
                              FontSize="{StaticResource FontSizeSmall}"
@@ -84,6 +85,7 @@
                 
                 <StackPanel>
 
+                    <!--
                     <Button Name="NextSampleButton"
                             Command="{Binding NextSampleCommand}"
                             >
@@ -94,13 +96,19 @@
                             Command="{Binding SaveAsSampleCommand}">
                         Save as sample
                     </Button>
+                    -->
 
                     <Button Name="NewRandomSampleButton"
                             Command="{Binding GenerateRandomSampleCommand}"
                             >
                         New random sample
                     </Button>
-
+                    
+                    <Button x:Name="DrawBezierButton"
+                            Command="{Binding DrawBezierCommand}">
+                        Draw Bezier
+                    </Button>
+                    <!--
                     <Label HorizontalAlignment="Center">
                         Random parameters:
                     </Label>
@@ -134,14 +142,16 @@
                                         Name="PointsUpperYUpDown" 
                                         Maximum="{Binding SceneSize}"
                                         Minimum="0"/>
-
+                    -->
                     <!-- Button that will show user guide/helper 
                          Should be an icon further
                     -->
+                    <!--
                     <Button x:Name="HelpButton"
                             Command="{Binding ShowHelpCommand}">
                         Help
                     </Button>
+                    -->
 
                 </StackPanel>
             </StackPanel>
