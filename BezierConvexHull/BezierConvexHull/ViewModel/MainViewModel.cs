@@ -27,6 +27,10 @@ namespace BezierConvexHull
 
         public RelayCommand DrawBezierCommand { get; set; }
 
+        public RelayCommand ReadFromFileCommand { get; set; }
+
+        public RelayCommand InterpreteAsControlPointsCommand { get; set; }
+
         public int MaxPointsNumber { get; }
 
         public int SceneSize { get; } = 420;
@@ -63,6 +67,9 @@ namespace BezierConvexHull
                     }
                 }
                 curPoints = points;
+                Point p0 = curPoints[0];
+                curPoints.Sort(new PointComparer(p0));
+
                 bezierBuilt = false;
             }, obj => true);
 
@@ -70,12 +77,52 @@ namespace BezierConvexHull
 
             DrawBezierCommand = new RelayCommand(obj =>
             {
-                Point p0 = curPoints[0];
-                curPoints.Sort(new PointComparer(p0));
-
                 SetPathData(curPoints);
 
-                
+            }, obj => true);
+
+            ReadFromFileCommand = new RelayCommand(obj =>
+            {
+                string path = @"C:\Users\Asus\Desktop\InputFiles\input1.txt";
+
+                using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+                {
+                    string line;
+                    CurrentPointSet.Clear(); 
+                    curPoints = new List<Point>();
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] coords = line.Split(' '); 
+                        CurrentPointSet.Add(new PointViewModel() { X = Convert.ToSingle(coords[0]) * SCALE_INCREASE + SCALE_SHIFT, Y = Convert.ToSingle(coords[1]) * SCALE_INCREASE + SCALE_SHIFT, Width = RADIUS, Height = RADIUS, IsHullPoint = true });
+                        curPoints.Add(new Point(Convert.ToSingle(coords[0]), Convert.ToSingle(coords[1])));
+                    }
+                }
+            }, obj => true);
+
+            InterpreteAsControlPointsCommand = new RelayCommand(obj =>
+            {
+                List<Point> bezierPoints = new List<Point>();
+                for (double t = 0; t < 1; t += 0.005)
+                {
+                    double x = 0;
+                    double y = 0;
+
+                    for (int k = 0; k < curPoints.Count; ++k)
+                    {
+                        x += curPoints[k].x * b(curPoints.Count - 1, k, t);
+                        y += curPoints[k].y * b(curPoints.Count - 1, k, t);
+                    }
+                    bezierPoints.Add(new Point(x, y));
+                }
+
+                foreach (Point p in bezierPoints)
+                {
+                    CurrentPointSet.Add(new PointViewModel() { X = p.x * SCALE_INCREASE + SCALE_SHIFT, Y = p.y * SCALE_INCREASE + SCALE_SHIFT, Width = BEZIER_RADIUS, Height = BEZIER_RADIUS, IsHullPoint = true });
+                }
+
+                CurrentPointSet.Add(new PointViewModel() { X = curPoints[0].x * SCALE_INCREASE + SCALE_SHIFT, Y = curPoints[0].y * SCALE_INCREASE + SCALE_SHIFT, Width = RADIUS, Height = RADIUS, IsHullPoint = false });
+                CurrentPointSet.Add(new PointViewModel() { X = curPoints[curPoints.Count-1].x * SCALE_INCREASE + SCALE_SHIFT, Y = curPoints[curPoints.Count - 1].y * SCALE_INCREASE + SCALE_SHIFT, Width = RADIUS, Height = RADIUS, IsHullPoint = false });
+
             }, obj => true);
 
             SamplePointSetsCollection = new ObservableCollection<ObservableCollection<PointViewModel>>();
@@ -104,8 +151,7 @@ namespace BezierConvexHull
 
                 double y = (1 - t) * (1 - t) * (1 - t) * segment.StartPoint.Y + 3 * t * (1 - t) * (1 - t) * segment.FirstControlPoint.Y + 3 * t * t * (1 - t) * segment.SecondControlPoint.Y + t * t * t * segment.EndPoint.Y;
 
-                Point p = new Point(x, y); 
-                CurrentPointSet.Add(new PointViewModel() { X = p.x * SCALE_INCREASE + SCALE_SHIFT, Y = p.y * SCALE_INCREASE + SCALE_SHIFT, Width = BEZIER_RADIUS, Height = BEZIER_RADIUS, IsHullPoint = true });
+                CurrentPointSet.Add(new PointViewModel() { X = x * SCALE_INCREASE + SCALE_SHIFT, Y = y * SCALE_INCREASE + SCALE_SHIFT, Width = BEZIER_RADIUS, Height = BEZIER_RADIUS, IsHullPoint = true });
             }
         }
 
@@ -114,15 +160,19 @@ namespace BezierConvexHull
             return C(n, k) * Math.Pow(t, k) * Math.Pow(1 - t, n - k);
         }
 
-        private int C(int n, int k)
+        private double C(int n, int k)
         {
-            return (int)(factorial(n)/(factorial(k) * factorial(n-k)));
+            return factorial(n) / (factorial(k) * factorial(n - k));
         }
 
-        private int factorial(int n)
+        private double factorial(int arg)
         {
-            if (n == 0 || n == 1) return 1;
-            else return n * factorial(n - 1);
+            if (arg == 0) return 1;
+
+            double res = 1;
+            for (int i = 1; i <= arg; i++)
+                res *= i;
+            return res;
         }
 
         public class BezierCurveSegment

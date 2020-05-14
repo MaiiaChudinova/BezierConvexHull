@@ -108,6 +108,16 @@
                             Command="{Binding DrawBezierCommand}">
                         Draw Bezier
                     </Button>
+                    
+                    <Button x:Name="ReadFromFileButton"
+                            Command="{Binding ReadFromFileCommand}">
+                        Read from file
+                    </Button>
+                    
+                    <Button x:Name="InterpreteAsControlPointsButton"
+                            Command="{Binding InterpreteAsControlPointsCommand}">
+                        Interprete as control points
+                    </Button>
                     <!--
                     <Label HorizontalAlignment="Center">
                         Random parameters:
