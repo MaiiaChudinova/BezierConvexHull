@@ -10,7 +10,7 @@
         MinHeight="450"  
         MinWidth="800"        
         >
-
+    
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -37,88 +37,53 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding IsHullPoint, Converter={local:BooleanToBackgroundColorBrushConverter}}"/>
+                            <Ellipse Width="{Binding Width}" Height="{Binding Height}" 
+                                     Fill="{Binding IsHullPoint, Converter={local:BooleanToBackgroundColorBrushConverter}}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Border>
 
             <StackPanel Grid.Column="1">
-                <Label>
-                    Samples:
-                </Label>
 
-                <!--="{StaticResource PointSetScrollViewer}"-->
-                <ScrollViewer Height="250" >
-                    <ListBox x:Name="SamplesListBox"
-                             ItemsSource="{Binding SamplePointSetsCollection}"
-                             FontSize="{StaticResource FontSizeSmall}"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <StackPanel Grid.Row="0"
-                                        Orientation="Horizontal">
-                                        <Label Content="Points number:"/>
-                                        <Label Content="{Binding Count}"/>
-                                    </StackPanel>
-                                    
-                                    <ListBox Grid.Row="1" 
-                                             ItemsSource="{Binding Item}">
-                                        <ListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ListBox.ItemsPanel>
-                                    </ListBox>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-                
                 <StackPanel>
-
-                    <!--
-                    <Button Name="NextSampleButton"
-                            Command="{Binding NextSampleCommand}"
-                            >
-                        Next sample
-                    </Button>
-
-                    <Button x:Name="SaveAsSampleButton"
-                            Command="{Binding SaveAsSampleCommand}">
-                        Save as sample
-                    </Button>
-                    -->
 
                     <Button Name="NewRandomSampleButton"
                             Command="{Binding GenerateRandomSampleCommand}"
                             >
                         New random sample
                     </Button>
+
+                    <Button x:Name="DrawConvexHullButton"
+                            Command="{Binding DrawConvexHullCommand}">
+                        Build convex hull
+                    </Button>
+
+                    <Button x:Name="DrawNBezierCurveButton"
+                            Command="{Binding DrawNBezierCurveCommand}">
+                        Build Bezier curve (degree N)
+                    </Button>
                     
-                    <Button x:Name="DrawBezierButton"
-                            Command="{Binding DrawBezierCommand}">
-                        Draw Bezier
+                    <Button x:Name="DrawBezierApproximationButton"
+                            Command="{Binding DrawBezierApproximationCommand}">
+                        Build Bezier approximation
                     </Button>
                     
                     <Button x:Name="ReadFromFileButton"
                             Command="{Binding ReadFromFileCommand}">
-                        Read from file
+                        Read default from file
                     </Button>
                     
-                    <Button x:Name="InterpreteAsControlPointsButton"
-                            Command="{Binding InterpreteAsControlPointsCommand}">
-                        Interprete as control points
+                    <Button x:Name="SaveToFileButton"
+                            Command="{Binding SaveToFileCommand}">
+                        Save current in file
                     </Button>
-                    <!--
+
+                    <Button x:Name="GetHelpButton"
+                            Command="{Binding GetHelpCommand}">
+                        Help
+                    </Button>
+                    
                     <Label HorizontalAlignment="Center">
                         Random parameters:
                     </Label>
@@ -127,41 +92,15 @@
                                         Watermark="Enter points number..."
                                         Name="PointsNumberUpDown" 
                                         Maximum="{Binding MaxPointsNumber}"
-                                        Minimum="1"/>
+                                        Minimum="1"
+                                        Value="{Binding PointsToGenerate}"/>
 
-                    <xctk:IntegerUpDown Height="20"
-                                        Watermark="Enter points' x lower bound..."
-                                        Name="PointsLowerXUpDown" 
-                                        Maximum="{Binding SceneSize}"
-                                        Minimum="0"/>
-
-                    <xctk:IntegerUpDown Height="20"
-                                        Watermark="Enter points' x upper bound..."
-                                        Name="PointsUpperXUpDown" 
-                                        Maximum="{Binding SceneSize}"
-                                        Minimum="0"/>
-
-                    <xctk:IntegerUpDown Height="20"
-                                        Watermark="Enter points' y lower bound..."
-                                        Name="PointsLowerYUpDown" 
-                                        Maximum="{Binding SceneSize}"
-                                        Minimum="0"/>
-
-                    <xctk:IntegerUpDown Height="20"
-                                        Watermark="Enter points' y upper bound..."
-                                        Name="PointsUpperYUpDown" 
-                                        Maximum="{Binding SceneSize}"
-                                        Minimum="0"/>
-                    -->
-                    <!-- Button that will show user guide/helper 
-                         Should be an icon further
-                    -->
-                    <!--
-                    <Button x:Name="HelpButton"
-                            Command="{Binding ShowHelpCommand}">
-                        Help
-                    </Button>
-                    -->
+                    <xctk:SingleUpDown Height="20"
+                                       Watermark="Enter k coefficient..."
+                                       Name="SmoothCoefficientUpDown"
+                                       Maximum="1"
+                                       Minimum="0"
+                                       Value="{Binding SmoothCoefficient}"/>
 
                 </StackPanel>
             </StackPanel>

@@ -8,8 +8,8 @@ namespace BezierConvexHull
 {
     public class Point
     {
-        public /*readonly int*/ double x;
-        public /*readonly int*/ double y;
+        public double x;
+        public double y;
 
         public Point(double x, double y)
         {
@@ -19,7 +19,7 @@ namespace BezierConvexHull
 
         public override string ToString()
         {
-            return $"({x},{y})";
+            return $"{x},{y}";
         }
     }
 }

@@ -49,5 +49,26 @@ namespace BezierConvexHull
 		{
 			return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
 		}
+
+
+		public static double GetBersteinPolinomial(int n, int k, double t)
+		{
+			return C(n, k) * Math.Pow(t, k) * Math.Pow(1 - t, n - k);
+		}
+
+		public static double C(int n, int k)
+		{
+			return Factorial(n) / (Factorial(k) * Factorial(n - k));
+		}
+
+		public static double Factorial(int arg)
+		{
+			if (arg == 0) return 1;
+
+			double res = 1;
+			for (int i = 1; i <= arg; i++)
+				res *= i;
+			return res;
+		}
 	}
 }
